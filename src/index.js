@@ -1,12 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+const express = require('express');
+const app = express();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const React = require('react');
+const renderToString = require('react-dom/server').renderToString;
+const Home = require('./client/components/Home').default;
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+app.get('/', (req, res) => {
+    const content = renderToString(<Home/>);
+    res.send(content);
+});
+
+
+app.listen(3001, () => {
+    console.log('start server listen on 3001');
+});
