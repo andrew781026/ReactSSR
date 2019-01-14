@@ -7,7 +7,7 @@ const Home = require('./client/components/Home').default;
 
 
 app.get('/', (req, res) => {
-    const content = renderToString(<Home/>);
+    const content = renderToString(<Home/>); // node 執行環境中 , 不支援 JSX
     res.send(content);
 });
 
