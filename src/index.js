@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>Title</title>
+            <title>首頁</title>
+             <link rel="shortcut icon" href="assets/favicon.ico" />
         </head>
         <body>
             <div>${content}</div>
