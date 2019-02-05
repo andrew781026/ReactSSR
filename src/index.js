@@ -4,6 +4,7 @@ const app = express();
 const React = require('react');
 const renderToString = require('react-dom/server').renderToString;
 const Home = require('./client/components/Home').default;
+const render = require('./helper/render').default;
 
 app.use(express.static('client'));
 
@@ -14,9 +15,10 @@ app.get('/first', (req, res) => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
 
     // client use js with express static folder
+    /*
     const content = renderToString(<Home/>);
 
     const html = `
@@ -33,8 +35,11 @@ app.get('/', (req, res) => {
         </body>
         </html>
     `;
+    */
 
-    res.send(html);
+    console.log('you request from server side');
+
+    res.send(render(req));
 });
 
 app.listen(3001, () => {
