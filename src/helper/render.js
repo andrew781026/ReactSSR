@@ -1,15 +1,17 @@
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
-import Home from '../client/components/Home';
 import Routes from '../client/routes';
+import {Provider} from 'react-redux';
 
-const renderFunc = function (req) {
+const renderFunc = function (req, store) {
 
     const element = (
-        <StaticRouter location={req.path} context={{}}>
-            <Routes/>
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter location={req.path} context={{}}>
+                <Routes/>
+            </StaticRouter>
+        </Provider>
     );
 
     // client use js with express static folder

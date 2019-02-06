@@ -5,6 +5,7 @@ const React = require('react');
 const renderToString = require('react-dom/server').renderToString;
 const Home = require('./client/components/Home').default;
 const render = require('./helper/render').default;
+const createStore = require('./helper/createStore').default;
 
 app.use(express.static('client'));
 
@@ -17,29 +18,11 @@ app.get('/first', (req, res) => {
 
 app.get('/*', (req, res) => {
 
-    // client use js with express static folder
-    /*
-    const content = renderToString(<Home/>);
-
-    const html = `
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>首頁</title>
-             <link rel="shortcut icon" href="assets/favicon.ico" />
-        </head>
-        <body>
-            <div>${content}</div>
-            <!-- get client side bundle.js with below -->
-            <script src="bundle.js"></script>
-        </body>
-        </html>
-    `;
-    */
-
     console.log('you request from server side');
 
-    res.send(render(req));
+    const store = createStore();
+
+    res.send(render(req,store));
 });
 
 app.listen(3001, () => {
