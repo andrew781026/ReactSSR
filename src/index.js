@@ -1,3 +1,4 @@
+require('babel-polyfill').default;
 const express = require('express');
 const app = express();
 

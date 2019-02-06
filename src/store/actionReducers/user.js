@@ -30,7 +30,7 @@ const ActionCreator = {
 
 
 const initialState = {
-    users: []
+    list: []
 };
 
 const Reducer = function (state = initialState, action) {
@@ -41,7 +41,7 @@ const Reducer = function (state = initialState, action) {
 
             return {
                 ...state,
-                users: newUsers
+                list: newUsers
             };
         }
         default: {
